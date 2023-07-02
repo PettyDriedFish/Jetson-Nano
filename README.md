@@ -24,3 +24,34 @@ The domestic nano and NVIDIA nano have an additional step of firmware flushing, 
 https://www.waveshare.com/wiki/JETSON-NANO-DEV-KIT
 
 https://www.waveshare.net/wiki/JETSON-NANO-DEV-KIT
+
+## 0701
+
+something to remind for restart:
+
+sudo sh -c 'echo 70 > /sys/devices/pwm-fan/target_pwm'
+
+wifi：
+
+ifconfig
+sudo nmcli device wifi hotspot con-name USB-HS ifname wlan0 ssid zaozi-desktop password 12345678
+sudo nmcli connection up USB-HS
+
+and some links: 
+
+https://www.waveshare.net/wiki/JETSON-NANO-DEV-KIT#GPIO
+
+https://www.waveshare.net/wiki/Environment_Sensor_for_Jetson_Nano
+
+https://www.waveshare.net/wiki/Fan-4020-PWM-5V
+
+https://outlook.office365.com/mail/
+
+https://airportal.cn/
+
+https://chat.openai.com/
+
+https://github.com/python-kasa/python-kasa
+
+https://stackoverflow.com/questions/52231825/python-3-7-import-smbus-modulenotfounderror-no-module-named-smbus
+
