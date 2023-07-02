@@ -51,6 +51,10 @@ https://airportal.cn/
 
 https://chat.openai.com/
 
+i am sooo sad
+
+https://blog.csdn.net/qq1195365047/article/details/88974647
+
 https://github.com/python-kasa/python-kasa
 
 https://stackoverflow.com/questions/52231825/python-3-7-import-smbus-modulenotfounderror-no-module-named-smbus
