@@ -80,3 +80,7 @@ https://blog.csdn.net/HANG_ONWAY/article/details/111826284
 https://blog.csdn.net/dbdxnuliba/article/details/104366564
 
 smbus使用2.7/2.8，kasa需要3.8以上。查看安装都在，但是依旧无法使用
+
+还没看完下面link有没有可能解决问题：
+
+https://discuss.bluerobotics.com/t/import-error-smbus/11701/10
