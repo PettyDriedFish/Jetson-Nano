@@ -27,17 +27,17 @@ https://www.waveshare.net/wiki/JETSON-NANO-DEV-KIT
 
 ## 0701
 
-something to remind for restart:
+### something to remind for restart:
 
 sudo sh -c 'echo 70 > /sys/devices/pwm-fan/target_pwm'
 
-wifi：
+### wifi：
 
 ifconfig
 sudo nmcli device wifi hotspot con-name USB-HS ifname wlan0 ssid zaozi-desktop password 12345678
 sudo nmcli connection up USB-HS
 
-and some links: 
+### and some links: 
 
 https://www.waveshare.net/wiki/JETSON-NANO-DEV-KIT#GPIO
 
@@ -61,8 +61,7 @@ https://stackoverflow.com/questions/52231825/python-3-7-import-smbus-modulenotfo
 
 ## 0707
 
-配置java环境变量：
-
+### 配置java环境变量：
 https://juejin.cn/s/linux%E4%B8%8B%E9%85%8D%E7%BD%AEjava%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F
 
 ### .tar.gz 和 .tgz
@@ -72,5 +71,5 @@ tar -zcvf FileName.tar.gz DirName       # 将DirName和其下所有文件（夹�
 
 tar -C DesDirName -zxvf FileName.tar.gz # 解压到目标路径
 
-###国产版jetson nano安装pycharm
+### 国产版jetson nano安装pycharm
 https://zhuanlan.zhihu.com/p/583062190
