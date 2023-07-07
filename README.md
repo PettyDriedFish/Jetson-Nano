@@ -64,3 +64,8 @@ https://stackoverflow.com/questions/52231825/python-3-7-import-smbus-modulenotfo
 配置java环境变量：
 
 https://juejin.cn/s/linux%E4%B8%8B%E9%85%8D%E7%BD%AEjava%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F
+
+# .tar.gz 和 .tgz
+tar -zxvf FileName.tar.gz               # 解压
+tar -zcvf FileName.tar.gz DirName       # 将DirName和其下所有文件（夹）压缩
+tar -C DesDirName -zxvf FileName.tar.gz # 解压到目标路径
