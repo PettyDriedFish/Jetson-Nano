@@ -71,3 +71,6 @@ tar -zxvf FileName.tar.gz               # 解压
 tar -zcvf FileName.tar.gz DirName       # 将DirName和其下所有文件（夹）压缩
 
 tar -C DesDirName -zxvf FileName.tar.gz # 解压到目标路径
+
+###国产版jetson nano安装pycharm
+https://zhuanlan.zhihu.com/p/583062190
