@@ -59,3 +59,8 @@ https://github.com/python-kasa/python-kasa
 
 https://stackoverflow.com/questions/52231825/python-3-7-import-smbus-modulenotfounderror-no-module-named-smbus
 
+## 0707
+
+配置java环境变量：
+
+https://juejin.cn/s/linux%E4%B8%8B%E9%85%8D%E7%BD%AEjava%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F
