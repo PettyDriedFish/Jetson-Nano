@@ -73,3 +73,10 @@ tar -C DesDirName -zxvf FileName.tar.gz # 解压到目标路径
 
 ### 国产版jetson nano安装pycharm
 https://zhuanlan.zhihu.com/p/583062190
+
+### smbus & kasa冲突问题
+https://blog.csdn.net/HANG_ONWAY/article/details/111826284
+
+https://blog.csdn.net/dbdxnuliba/article/details/104366564
+
+smbus使用2.7/2.8，kasa需要3.8以上。查看安装都在，但是依旧无法使用
