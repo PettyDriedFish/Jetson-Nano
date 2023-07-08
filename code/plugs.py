@@ -1,17 +1,37 @@
-from python-kasa import SmartPlug
-from python-kasa.exceptions import SmartDeviceException
+from kasa import SmartPlug
+import asyncio
 
-#连接到智能插座
-ip_address = "192.168.3.29"
-plug = SmartPlug(ip_address)
-plug.get_sysinfo()
+# ip_address = "192.168.3.29"
+# plug = SmartPlug(ip_address)
 
-#根据收到的值控制智能插座
-received_value = 1  # 假设收到的值为 1 或 0
-try:
-    if received_value == 1:
-        plug.turn_on()
-    else:
-        plug.turn_off()
-except SmartDeviceException as e:
-    print("控制插座时发生错误:", str(e))
+# plug = SmartPlug("192.168.3.30")
+# asyncio.run(plug.update())
+# plug.alias
+#
+# asyncio.run(plug.set_led(True))
+# plug.led
+
+async def turnOnPlug(Str):
+    plug = SmartPlug(Str)
+    await plug.update()
+    print("Alias:", plug.alias)
+
+    await plug.set_led(True)
+    print("LED:", plug.led)
+
+    await plug.turn_on()
+    print("turn on")
+
+async def turnOffPlug(Str):
+    plug = SmartPlug(Str)
+    await plug.update()
+    print("Alias:", plug.alias)
+
+    await plug.set_led(True)
+    print("LED:", plug.led)
+
+    await plug.turn_off()
+    print("turn off")
+
+# asyncio.run(turnOnPlug("192.168.3.30"))
+# asyncio.run(turnOffPlug("192.168.3.30"))
