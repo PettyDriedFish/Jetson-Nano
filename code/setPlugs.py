@@ -15,7 +15,7 @@ lowTemp = 24
 highHum = 50
 lowHum = 40
 
-# 三个插头
+# three plugs
 fanPlug = "192.168.3.29"
 humidifierPlug = "192.168.3.30"
 heaterPlug = "192.168.3.31"
