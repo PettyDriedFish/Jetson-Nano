@@ -1,12 +1,12 @@
 import plugs
-# import getData
+import getData
 import asyncio
 
-# currentTemp = getData.getCurrentTemp()
-# currentHum = getData.getCurrentHum()
+currentTemp = getData.getCurrentTemp()
+currentHum = getData.getCurrentHum()
 
-currentTemp = 26
-currentHum = 40
+# currentTemp = 31.22
+# currentHum = 35
 
 # set temperature
 highTemp = 27
@@ -22,25 +22,25 @@ heaterPlug = "192.168.3.31"
 
 
 # temperature control
-if currentTemp > highTemp:
+if currentTemp >= highTemp:
     asyncio.run(plugs.turnOnPlug(fanPlug))
-    print("The temperature is higher than the set maximum temperature")
-elif currentTemp < lowTemp:
+    print("turnOnPlug(fanPlug)")
+elif currentTemp <= lowTemp:
     asyncio.run(plugs.turnOnPlug(heaterPlug))
-    print("The temperature is lower than the set minimum temperature")
+    print("turnOnPlug(heaterPlug)")
 else:
     asyncio.run(plugs.turnOffPlug(fanPlug))
     asyncio.run(plugs.turnOffPlug(heaterPlug))
     print("nice temperature")
 
 # humidity control
-if currentHum > highHum:
-    asyncio.run(plugs.turnOnPlug(fanPlug))
-    print("The humidity is higher than the set maximum humidity")
-elif currentHum < lowHum:
+if currentHum >= highHum:
+    # asyncio.run(plugs.turnOnPlug(fanPlug))
+    print("high hum")
+elif currentHum <= lowHum:
     asyncio.run(plugs.turnOnPlug(humidifierPlug))
-    print("The humidity is lower than the set minimum humidity")
+    print("turnOnPlug(humidifierPlug)")
 else:
-    asyncio.run(plugs.turnOffPlug(fanPlug))
+    # asyncio.run(plugs.turnOffPlug(fanPlug))
     asyncio.run(plugs.turnOffPlug(humidifierPlug))
     print("nice humidity")

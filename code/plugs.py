@@ -33,5 +33,5 @@ async def turnOffPlug(Str):
     await plug.turn_off()
     print("turn off")
 
-# asyncio.run(turnOnPlug("192.168.3.30"))
+# asyncio.run(turnOnPlug("192.168.3.29"))
 # asyncio.run(turnOffPlug("192.168.3.30"))

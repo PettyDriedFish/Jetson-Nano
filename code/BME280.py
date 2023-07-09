@@ -1,5 +1,6 @@
 #coding: utf-8
-import smbus
+import smbus2
+# import busio
 import time
 
 I2C_ADDR = 0x76
@@ -12,7 +13,7 @@ t_fine = 0.0
 
 class BME280:
 	def __init__(self, address = I2C_ADDR):
-		self.i2c = smbus.SMBus(1)
+		self.i2c = smbus2.SMBus(1)
 		self.address = address
 		
 		self.calib = []

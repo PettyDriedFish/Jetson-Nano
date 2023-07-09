@@ -19,7 +19,9 @@ hum = data[2]
 print("humidity = %.*f"%(2, hum))
 
 def getCurrentTemp():
+    # print("temperature = %.*f" % (2, temp))
     return temp;
 
 def getCurrentHum():
+    # print("humidity = %.*f" % (2, hum))
     return hum;
