@@ -5,6 +5,7 @@ from tornado import gen
 import getData
 import time
 from kasa import SmartPlug
+import json
 import asyncio
 import tracemalloc
 tracemalloc.start()
@@ -12,9 +13,9 @@ tracemalloc.start()
 # temp = getData.getCurrentTemp()
 # hum = getData.getCurrentHum()
 
-# fanPlug = asyncio.run(SmartPlug("192.168.3.29").is_on)
-# humidifierPlug = asyncio.run(SmartPlug("192.168.3.30").is_on)
-# heaterPlug = asyncio.run(SmartPlug("192.168.3.31").is_on)
+# fan_plug_status = asyncio.run(SmartPlug("192.168.3.29").is_on)
+# humidifier_plug_status = asyncio.run(SmartPlug("192.168.3.30").is_on)
+# heater_plug_status = asyncio.run(SmartPlug("192.168.3.31").is_on)
 
 class WebSocketHandler(tornado.websocket.WebSocketHandler):
     def open(self):
@@ -24,6 +25,11 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
 
     def on_message(self, message):
         print("Received message:", message)
+        data = json.loads(message)
+        fan_plug_status = data['fan_plug_status']
+        humidifier_plug_status = data['humidifier_plug_status']
+        heater_plug_status = data['heater_plug_status']
+
         # self.send_data()  # 收到任何消息时都发送一次消息
         # if message == '1':
         #     writeMessage = f'Temperature now is temp'
@@ -78,16 +84,37 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
             humidifier_plug_state = await self.get_smartplug_state("192.168.3.30")
             heater_plug_state = await self.get_smartplug_state("192.168.3.31")
 
-            message = f'Temperature now is {temp}, Humidity now is {hum}\n'
-            message += f'Fan Plug is {"on" if fan_plug_state else "off"}\n'
-            message += f'Humidifier Plug is {"on" if humidifier_plug_state else "off"}\n'
-            message += f'Heater Plug is {"on" if heater_plug_state else "off"}'
+            # message = f'Temperature now is {temp}, Humidity now is {hum}\n'
+            # message += f'Fan Plug is {"on" if fan_plug_state else "off"}\n'
+            # message += f'Humidifier Plug is {"on" if humidifier_plug_state else "off"}\n'
+            # message += f'Heater Plug is {"on" if heater_plug_state else "off"}'
+
+            data = {
+                'temperature': temp,
+                'humidity': hum,
+                'fan_plug_state': fan_plug_state,
+                'humidifier_plug_state': humidifier_plug_state,
+                'heater_plug_state': heater_plug_state
+            }
+
+            message = json.dumps(data)
 
             print(message)
             await self.write_message(message)
 
             # 等待60秒后再次发送数据
             time.sleep(10)
+
+    async def control_plug(ip_address, status):
+        plug = SmartPlug(ip_address)
+        await plug.update()
+
+        if status and not plug.is_on:
+            await plug.turn_on()
+            print(f"Plug at {ip_address} turned on")
+        elif not status and plug.is_on:
+            await plug.turn_off()
+            print(f"Plug at {ip_address} turned off")
 
 if __name__ == "__main__":
     app = tornado.web.Application([
@@ -96,3 +123,4 @@ if __name__ == "__main__":
     app.listen(8000)
     print("WebSocket server started")
     tornado.ioloop.IOLoop.current().start()
+

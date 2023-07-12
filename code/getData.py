@@ -20,8 +20,8 @@ print("humidity = %.*f"%(2, hum))
 
 def getCurrentTemp():
     # print("temperature = %.*f" % (2, temp))
-    return temp;
+    return round(temp, 2);
 
 def getCurrentHum():
     # print("humidity = %.*f" % (2, hum))
-    return hum;
+    return round(hum, 2);
