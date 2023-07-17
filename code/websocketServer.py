@@ -145,10 +145,10 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
         await self.control_plug("192.168.3.31", heater_plug_status)
 
 
-if __name__ == "__main__":
-    app = tornado.web.Application([
-        (r"/websocket", WebSocketHandler),
-    ])
-    app.listen(8000)
-    print("WebSocket server started")
-    tornado.ioloop.IOLoop.current().start()
+# if __name__ == "__main__":
+#     app = tornado.web.Application([
+#         (r"/websocket", WebSocketHandler),
+#     ])
+#     app.listen(8000)
+#     print("WebSocket server started")
+#     tornado.ioloop.IOLoop.current().start()
