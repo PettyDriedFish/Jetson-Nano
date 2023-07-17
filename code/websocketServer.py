@@ -4,7 +4,7 @@ import tornado.web
 import tornado.websocket
 from tornado import gen
 import getData
-# import scheduleTH
+import scheduleTH
 import time
 from kasa import SmartPlug
 import json
@@ -23,16 +23,17 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
         print("Received message:", message)
         receiveData = json.loads(message)
         # self.update_globalData(receiveData)
-        self.set_plugs()
+        # self.set_plugs()
         # print("Received message:", message)
-        # data = json.loads(message)
-        # fan_plug_status = data['fan_plug_status']
-        # humidifier_plug_status = data['humidifier_plug_status']
-        # heater_plug_status = data['heater_plug_status']
-        #
-        # asyncio.create_task(self.control_plug("192.168.3.29", fan_plug_status))
-        # asyncio.create_task(self.control_plug("192.168.3.30", humidifier_plug_status))
-        # asyncio.create_task(self.control_plug("192.168.3.31", heater_plug_status))
+        fan_plug_state = receiveData['fan_plug_state']
+        humidifier_plug_state = receiveData['humidifier_plug_state']
+        heater_plug_state = receiveData['heater_plug_state']
+
+        asyncio.create_task(self.control_plug("192.168.3.29", fan_plug_state))
+        asyncio.create_task(self.control_plug("192.168.3.30", humidifier_plug_state))
+        asyncio.create_task(self.control_plug("192.168.3.31", heater_plug_state))
+
+        self.update_globalData(receiveData)
 
     @gen.coroutine
     def on_close(self):
@@ -67,8 +68,8 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
             # scheduleTH.record_data()
 
             # 获取更新后的数据
-            # today_temperature = scheduleTH.data['today_temperature']
-            # today_humidity = scheduleTH.data['today_humidity']
+            today_temperature = scheduleTH.data['today_temperature']
+            today_humidity = scheduleTH.data['today_humidity']
 
             sendData = {
                 'temperature': temperature,
@@ -80,8 +81,8 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
                 'max_temperature': max_temperature,
                 'min_humidity': min_humidity,
                 'max_humidity': max_humidity,
-                # 'today_temperature': today_temperature,
-                # 'today_humidity': today_humidity
+                'today_temperature': today_temperature,
+                'today_humidity': today_humidity
             }
 
             message = json.dumps(sendData)
@@ -129,9 +130,9 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
             print(f"Plug at {ip_address} turned off")
 
     # 全局数据更新
-    # def update_globalData(self, receiveData):
-    #     global globalData
-    #     globalData = receiveData
+    def update_globalData(self, receiveData):
+        global globalData
+        globalData = receiveData
 
     # 控制插座
     async def set_plugs(self):
