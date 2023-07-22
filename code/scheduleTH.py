@@ -6,9 +6,9 @@ import datetime
 import getData
 import setPlugs
 
-today_temperature = [0] * 24
-today_humidity = [0] * 24
-hourly_data_count = [0] * 24 # 平均值
+today_temperature = [0.0] * 24
+today_humidity = [0.0] * 24
+hourly_data_count = [0.0] * 24 # 平均值
 
 data = {
     # 'today_temperature': [30.03, 29.84, 29.69, 29.66, 29.59, 29.5, 29.4, 29.28,
